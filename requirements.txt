@@ -1,0 +1,4 @@
+fastAPI
+Pillow 
+NumPy 
+uvicorn
