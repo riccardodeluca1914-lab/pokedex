@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La mia App FastAPI</title>
+    <!-- Colleghiamo il file CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Progetto Finale</h1>
+        <p class="messaggio">{{ messaggio }}</p>
+        <div class="card">
+            <h2>🔴⚪ Pokemondo</h2>
+            <p>Esplora il mio database interattivo sui Pokémon! Cerca il tuo Pokémon preferito e scopri informazioni affascinanti.</p>
+            <form action="/pokedex/" method="get" style="margin-top: 20px;">
+                <button type="submit">Apri il Pokédex →</button>
+            </form>
+        </div>
+        <div class="container" style="margin-top: 30px;">
+            <h2>🎮 Chi sono</h2>
+            <div class="card">    
+                <p>Sono un appassionato di Pokémon e ho creato questo Pokédex per condividere la mia passione con il mondo!</p>
+                <p>Utilizzando FastAPI, ho costruito un'applicazione web che consente agli utenti di cercare informazioni dettagliate sui Pokémon, come il loro tipo, esperienza base, peso e molto altro.</p>
+                <p>Il mio obiettivo è rendere l'esplorazione del mondo dei Pokémon divertente e accessibile a tutti, sia ai fan di lunga data che ai nuovi arrivati!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

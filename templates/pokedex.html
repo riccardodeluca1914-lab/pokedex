@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il mio Pokédex</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div style="text-align: left; margin-bottom: 25px;">
+            <a href="/">← Torna alla Home</a>
+        </div>
+
+        <h1>📖 Pokédex Interattivo</h1>
+        
+        <div class="card">
+            <h2 style="margin-top: 0; color: #2C3E50;">Cerca il tuo Pokémon</h2>
+            <form action="/cerca-pokemon-web/" method="post" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <input type="text" name="nome_pokemon" placeholder="Es. bulbasaur, mewtwo, pikachu..." required style="flex: 1; min-width: 150px;">
+                <button type="submit" style="white-space: nowrap;">🔍 Cerca</button>
+            </form>
+
+            {% if errore_api %}
+                <div style="color: #D32F2F; font-weight: bold; margin-top: 20px; padding: 12px; background-color: #FFEBEE; border-radius: 8px; border-left: 4px solid #D32F2F;">
+                    ⚠️ {{ errore_api }}
+                </div>
+            {% endif %}
+
+            {% if pokemon %}
+                <div style="margin-top: 25px; background: linear-gradient(135deg, #F5F7FA, #FFFFFF); padding: 20px; border-radius: 12px; text-align: center; border: 2px solid #FFD93D;">
+                    <h3 style="margin: 0 0 10px 0; font-size: 28px; text-transform: capitalize;">{{ pokemon.nome }}</h3>
+                    <p style="color: #666; margin: 5px 0 15px 0; font-weight: 500;">
+                        <span style="background: linear-gradient(135deg, #FF6B6B, #FF8E8E); color: white; padding: 5px 12px; border-radius: 20px; display: inline-block; text-transform: capitalize;">
+                            ⚡ {{ pokemon.tipo_principale }}
+                        </span>
+                    </p>
+                    
+                    <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                        <img src="{{ pokemon.foto_url }}" alt="Foto di {{ pokemon.nome }}" style="width: 180px; height: 180px; object-fit: contain; background-color: #F5F7FA; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1);">
+                    </div>
+                    
+                    <div style="text-align: left; background-color: white; padding: 15px; border-radius: 10px; border: 1px solid #E0E0E0;">
+                        <ul style="list-style-type: none; padding: 0; margin: 0;">
+                            <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #F0F0F0;">
+                                <span style="color: #FF6B6B; font-weight: bold;">🌍 Origine:</span>
+                                <span style="color: #555;">{{ generazione_ita }}</span>
+                            </li>
+                            <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #F0F0F0;">
+                                <span style="color: #FF6B6B; font-weight: bold;">📊 Esperienza Base:</span>
+                                <span style="color: #555;">{{ pokemon.esperienza_base }} XP</span>
+                            </li>
+                            <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #F0F0F0;">
+                                <span style="color: #FF6B6B; font-weight: bold;">⚖️ Peso:</span>
+                                <span style="color: #555;">{{ pokemon.peso }} hg</span>
+                            </li>
+                            <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #F0F0F0;">
+                                <span style="color: #FF6B6B; font-weight: bold;">⏪ Evolve da:</span>
+                                <span style="color: #555; text-transform: capitalize;">{{ pokemon.evolve_da }}</span>
+                            </li>
+                            <li>
+                                <span style="color: #FF6B6B; font-weight: bold;">⏩ Evolve in:</span>
+                                <span style="color: #555; text-transform: capitalize;">{{ pokemon.evolve_in }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
